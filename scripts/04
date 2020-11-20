@@ -1,0 +1,9 @@
+#!/bin/bash
+
+sudo crontab -l > tmp
+echo "0 0 * * * \
+ lines=\$(find /etc/crontab -mmin -1440 | wc -l) && \
+ if [ \$lines -ne 0 ]; then \
+  echo '/etc/crontab file was changed' | mail -s '/etc/crontab file was changed' root; fi" >> tmp
+sudo crontab tmp
+rm tmp

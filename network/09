@@ -1,0 +1,1 @@
+nslookup 42.fr | sed -e '1,5d' | sed -e '2d' | sed -e '3d'
